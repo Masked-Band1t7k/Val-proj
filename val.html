@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#ffe6f0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* Generic container */
+.container{
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+abbr {
+    color: blue;
+}
+#messageBox button {
+    background-color: #FF2886;
+    border: none;
+    color:white;
+    font-weight: bolder;
+}
+/* Hide elements when needed */
+.hidden{
+    display:none;
+}
+/* yesBtn styling*/
+#yesBtn {
+    background-color: pink;
+    border:#FF2886 2px solid ;
+    animation-name: yesR;
+    animation-delay: 1s;
+    animation-duration: 3s;
+    animation-fill-mode: ease-in;
+    animation-play-state: forwards;
+    animation-iteration-count: infinite;
+    animation-iteration-count: 7
+}
+@keyframes yesR {
+    to {
+        scale: 2;
+    }
+}
+#noBtn {
+    animation-name: noR;
+    animation-delay: 2s;
+    animation-duration: 3s;
+    animation-fill-mode: ease-out;
+    animation-play-state: forwards;
+    animation-iteration-count: infinite;
+    animation-iteration-count: 9
+}
+@keyframes noR {
+    to {
+        scale: -1;
+    }
+}
+button{
+    padding:10px 20px;
+    margin:10px;
+    font-size:16px;
+    cursor:pointer;
+    border-radius: 20px;
+}
+#thankBox h1 {
+    font-family: Trebuchet MS;
+    font-size: 2rem;
+    font-style: italic;
+}
+#thankBox h2 {
+    font-family: Comic Sans MS;
+}
+#note, #yours {
+    color: brown;
+}
+#yours {
+    text-align: right;
+}
+strong {
+    color: blue;
+    font-weight: bolder;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MESSAGE CONTAINER -->
+<div id="messageBox" class="container">
+    <h2 id="messageText">Hey <abbr title="Temiloluwa,Oreoluwa">Watermelon</abbr>🙂</h2>
+    <button onclick="nextMessage()">Click Me</button>
+</div>
+
+<!-- QUESTION CONTAINER -->
+<div id="questionBox" class="container hidden">
+    <h2>Will you be my Valentine?</h2>
+    <button id="yesBtn" onclick="sayYes()">YES ❤️</button>
+    <button id="noBtn">NO 😈</button>
+</div>
+
+<!-- THANK YOU CONTAINER -->
+<div id="thankBox" class="container hidden">
+    <h2>Thank you ❤️</h2>
+    <h1>I love you💕🌹</h1>
+    <p>I appreciate you making me the happiest person in the world 😉</p>
+    <p id="note">Now come early, so i can unwrap and stuff my face with the best Val gift.🍫🍦 </p>
+    <p>ps: That <strong>slow mf</strong> that is <em>crazily in love with you..</em> </p>
+    <h3>Even this playlist can't do justice to my love for you <br />
+    <a href="https://open.spotify.com/playlist/7mdGsaux00WFiPPnMpIPrr?si=LJCCQxElRuaS-Y4RknkqFw&pi=KHMYFbVaRzGwl">Click and owe me a Kiss.</a></h3>
+    <p id="yours">Ifeoluwa.</p>
+</div>
+
+<script>
+/* ---------- MESSAGE LOGIC ---------- */
+
+const messages = [
+"Hey 🙂",
+
+"I have something to ask you...",
+"You are actually really special",
+"So I was wondering...",
+"One last thing..."
+];
+
+let index = 0;
+
+function nextMessage(){
+    index++;
+
+    if(index < messages.length){
+        document.getElementById("messageText").innerText = messages[index];
+    }
+    else{
+        // Hide message container
+        document.getElementById("messageBox").classList.add("hidden");
+
+        // Show question container
+        document.getElementById("questionBox").classList.remove("hidden");
+    }
+}
+
+
+/* ---------- YES BUTTON ---------- */
+
+function sayYes(){
+    document.getElementById("questionBox").classList.add("hidden");
+    document.getElementById("thankBox").classList.remove("hidden");
+}
+
+
+/* ---------- RUNAWAY NO BUTTON ---------- */
+
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", function(){
+
+    const x = Math.random()*300 - 150;
+    const y = Math.random()*200 - 100;
+
+    noBtn.style.position = "relative";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+</script>
+
+</body>
+</html>
